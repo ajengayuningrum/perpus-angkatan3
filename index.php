@@ -1,6 +1,12 @@
 <?php 
 session_start();
+
+if (empty($_SESSION['NAMA'])) {
+    header("location:login.php?access=failed");
+}
+
 include 'koneksi.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -64,5 +70,6 @@ include 'koneksi.php';
     </div>
 
     <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
