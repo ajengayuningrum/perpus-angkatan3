@@ -7,10 +7,13 @@ addRow.addEventListener("click", function () {
   let aksiCell = newRow.insertCell(1);
   let bukuName = document.getElementById("id_book");
   bukuName = bukuName.options[bukuName.selectedIndex].text;
-
-  namaBukuCell.innerHTML = bukuName;
-  aksiCell.innerHTML =
-    "<button type='button' onclick='deleteRow(this)' class='btn btn-sm btn-danger'>Hapus</button>";
+  let bukuId = document.getElementById("id_book").value;
+  if(bukuId == ""){
+    alert("Buku tidak boleh kosong");
+    
+  }
+  namaBukuCell.innerHTML = bukuName + "<input type='hidden' name='id_book[]' value='" + bukuId + "'>";
+  aksiCell.innerHTML = "<button type='button' onclick='deleteRow(this)' class='btn btn-sm btn-danger'>Hapus</button>";
 });
 function deleteRow(button) {
   let row = button.parentNode.parentNode;

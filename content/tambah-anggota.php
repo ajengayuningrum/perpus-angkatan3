@@ -56,7 +56,7 @@ if (isset($_GET['delete'])) {
                         <input type="text" class="form-control" name="alamat" placeholder="Masukkan alamat anda" value="<?php echo isset($_GET['edit']) ? $rowEdit['alamat'] : '' ?>">
                     </div>
                     <div class="mb-3">
-                        <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'tambah' ?>" class="btn btn-primary" type="submit">Edit</button>
+                        <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'tambah' ?>" class="btn btn-primary" type="submit">Submit</button>
 
                     </div>
                 </form>
