@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (empty($_SESSION['NAMA'])) {
@@ -11,6 +11,7 @@ include 'koneksi.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +19,9 @@ include 'koneksi.php';
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
     <title>Document</title>
 </head>
+
 <body>
-   
+
 
     <!-- <nav class="navbar navbar-expand-lg shadow-sm sticky-top" style="background-color: #20c997;">
         <div class="container-fluid">
@@ -43,16 +45,16 @@ include 'koneksi.php';
 
         <?php
         if (isset($_GET['pg'])) {
-            if (file_exists('content/' . $_GET['pg'] .'.php')) {
+            if (file_exists('content/' . $_GET['pg'] . '.php')) {
                 include 'content/' . $_GET['pg'] . '.php';
             }
-        }else {
+        } else {
             include 'content/dashboard.php';
         }
         ?>
 
     </div>
-    
+
     <!-- <div class="container mt-5 text-center">
         <div class="row">
             <div class="col-4 mt-5">
@@ -62,14 +64,32 @@ include 'koneksi.php';
                 <h3 style="padding-top: 30px">"Jadilah penjaga pintu menuju petualangan tak terbatas, karena setiap kunci yang diatur adalah kunci menuju cakrawala pengetahuan yang lebih luas"</h3>
             </div>
         </div> -->
-        
-                <footer class="fixed-bottom" style="background-color: #20c997; min-height: 65px">
-            <p class="text-center pt-3 px-4">Copyright &copy 2024 PPKD - Jakarta Pusat.</p>
-        </footer>
-        
+
+    <footer class="fixed-bottom" style="background-color: #20c997; min-height: 65px">
+        <p class="text-center pt-3 px-4">Copyright &copy 2024 PPKD - Jakarta Pusat.</p>
+    </footer>
     </div>
 
+    <script src="bootstrap-5.3.3/dist/js/jquery-3.7.1.min.js"></script>
     <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
+    <script>
+        $("#id_peminjaman").change(function() {
+            let no_peminjaman = $(this).find('option:selected').text();
+            console.log(no_peminjaman)
+            $.ajax({
+                url: "ajax/getPeminjam.php?no_peminjaman=" + no_peminjaman,
+                type: "get",
+                dataType: "json",
+                success: function(res) {
+                    $('#no_pinjam').val(res.data.no_peminjaman);
+                    $('#tgl_peminjaman').val(res.data.tgl_peminjaman);
+                    $('#tgl_pengembalian').val(res.data.tgl_pengembalian);
+                    $('#nama_anggota').val(res.data.nama_anggota);
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
